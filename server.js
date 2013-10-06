@@ -7,18 +7,10 @@ var url = require("url");
 function start(route, handle){
 	// レスポンス処理を切り出す
 	function onRequest(req, res){
-		var postData = "";
+
 		var pathname = url.parse(req.url).pathname;
 		console.log("Request for '" + pathname + "' received.");
-
-		req.setEncoding("utf8");
-		req.addListener("data", function (postDataChunk) {
-			postData += postDataChunk;
-			console.log("Received Post data chunk '" + postDataChunk + "'.");
-		});
-		req.addListener("end", function () {
-			route(handle, pathname, res, postData);
-		});
+		route(handle, pathname, res, req);
 	}
 
 	// createServerでオブジェクトを呼び出す
