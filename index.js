@@ -8,6 +8,7 @@ var handle = [];
 handle["/"] = requestHandlers.start;
 handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
+handle["/show"] = requestHandlers.show;
 
 // exportされた関数を使う
 server.start(router.route, handle);
