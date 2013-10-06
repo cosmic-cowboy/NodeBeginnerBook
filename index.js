@@ -1,5 +1,6 @@
 // サーバモジュールを呼び出す
-var start = require("./server");
+var server = require("./server");
+var router = require("./router");
 
 // exportされた関数を使う
-start.start();
+server.start(router.route);
