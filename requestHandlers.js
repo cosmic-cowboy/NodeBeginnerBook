@@ -12,9 +12,9 @@ function start(res, postData){
 		'charset=UTF-8" />'+
 		'</head>'+
 		'<body>'+
-		'<form action="/upload" method="post">'+
-		'<textarea name="text" rows="20" cols="60"></textarea>'+
-		'<input type="submit" value="Submit text" />'+
+		'<form action="/upload" enctype="multipart/form-data" method="post">'+
+		'<input type="file" name="upload">'+
+		'<input type="submit" value="Upload file" />'+
 		'</form>'+
 		'</body>'+
 		'</html>';
