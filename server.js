@@ -10,12 +10,9 @@ function start(route, handle){
 		var pathname = url.parse(req.url).pathname;
 		console.log("Request for '" + pathname + "' received.");
 
-		res.writeHead(200,{"Content-Type":"text/plain"});
-
 		// ルータとサーバは粗になるように
-		var content = route(handle, pathname);
-		res.write(content);
-		res.end();
+		// responseオブジェクトを、 リクエストハンドラに渡す
+		var content = route(handle, pathname, res);
 	}
 
 	// createServerでオブジェクトを呼び出す

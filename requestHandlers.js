@@ -1,20 +1,27 @@
 // リクエストハンドラ
 var exec = require("child_process").exec;
 
-function start(){
+function start(res){
 	console.log("Request handler 'start' was called.");
 
 	var content = "empty";
 
-	exec("ls -lah", function (error, stdout, stderr) {
-		content = stdout;
-	});
-	return content;
+	exec("ls -lah",
+		{ timeout:100000, maxBuffer:20000*1024},
+		function (error, stdout, stderr) {
+			res.writeHead(200,{"Content-Type":"text/plain"});
+			res.write(stdout);
+			res.end();
+		}
+	);
 }
 
-function upload(){
+function upload(res){
 	console.log("Request handler 'upload' was called.");
-	return "Hello upload";
+
+	res.writeHead(200,{"Content-Type":"text/plain"});
+	res.write("Hello Upload");
+	res.end();
 }
 
 exports.start = start;
