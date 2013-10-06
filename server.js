@@ -3,16 +3,20 @@
 // httpモジュールを読み込む（Node.jsに同梱されている）
 var http = require("http");
 
-// レスポンス処理を切り出す
-function onRequest(req, res){
-	console.log("Request received.");
-	res.writeHead(200,{"Content-Type":"text/plain"});
-	res.write("Hello, World");
-	res.end();
+function start(){
+	// レスポンス処理を切り出す
+	function onRequest(req, res){
+		console.log("Request received.");
+		res.writeHead(200,{"Content-Type":"text/plain"});
+		res.write("Hello, World");
+		res.end();
+	}
+
+	// createServerでオブジェクトを呼び出す
+	// 呼び出されたオブジェクトのlisten()でサーバーを起動する
+	http.createServer(onRequest).listen(8888);
+	console.log("Server has started.");
 }
 
-// createServerでオブジェクトを呼び出す
-// 呼び出されたオブジェクトのlisten()でサーバーを起動する
-http.createServer(onRequest).listen(8888);
+exports.start = start;
 
-console.log("Server has started.");
